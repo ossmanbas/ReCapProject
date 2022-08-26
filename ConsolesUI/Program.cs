@@ -12,17 +12,23 @@ namespace ConsolesUI
     {
         static void Main(string[] args)
         {
-             CarTest();
+            //CarTest();
             // BrandTest();
+            //UserTest();
+              RentTest();
 
-           // UserTest();
+        }
+        private static void RentTest()
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            rentalManager.Add(new Rental { CarId = 1, CustomerId = 1, Id = 1, RentDate = DateTime.Now , ReturnDate = DateTime.Today });
 
         }
 
         private static void UserTest()
         {
             UserManager userManager = new UserManager(new EfUserDal());
-            //userManager.Add(new User { FirstName = "Osman", LastName = "Baş", Email = "osmanbastr12@gmail.com", Password = "123" });
+            userManager.Add(new User { FirstName = "Osman", LastName = "Baş", Email = "osmanbastr12@gmail.com", Password = "123" });
             userManager.Add(new User { FirstName = "Furkan", LastName = "Taşçı", Email = "esquetta@gmail.com", Password = "345" });
             userManager.Add(new User { FirstName = "Mehmet Ali", LastName = "Okudan", Email = "okudanmaois@gmail.com", Password = "567" });
             userManager.Add(new User { FirstName = "Berkay", LastName = "TÜRK", Email = "tavuklupilav@gmail.com", Password = "789" });

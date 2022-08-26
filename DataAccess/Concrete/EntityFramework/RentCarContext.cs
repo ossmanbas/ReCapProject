@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,8 +14,9 @@ namespace DataAccess.Concrete.EntityFramework
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=YAGMUR;Database=RentCar;Trusted_Connection=true");
+            optionsBuilder.UseSqlServer(@"Server=DESKTOP-R3A8UBN;Database=RentCar;Trusted_Connection=true");
         }
+
         public DbSet<Car> Cars { get; set; }
         public DbSet<Brand>Brands { get; set; }
         public DbSet<Color> Colors { get; set; }
