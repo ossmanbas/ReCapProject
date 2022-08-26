@@ -15,14 +15,22 @@ namespace ConsolesUI
             //CarTest();
             // BrandTest();
             //UserTest();
-              RentTest();
+            //RentTest();
 
         }
         private static void RentTest()
         {
             RentalManager rentalManager = new RentalManager(new EfRentalDal());
-            rentalManager.Add(new Rental { CarId = 1, CustomerId = 1, Id = 1, RentDate = DateTime.Now , ReturnDate = DateTime.Today });
+            //rentalManager.Add(new Rental { CarId = 1, CustomerId = 1, RentDate = DateTime.Now});
 
+            var result = rentalManager.GetAll();
+            if (result.Success)
+            {
+                foreach (var rent in result.Data)
+                {
+                    Console.WriteLine(rent.CarId + " - " + rent.RentDate);
+                }
+            }
         }
 
         private static void UserTest()
@@ -48,16 +56,16 @@ namespace ConsolesUI
             CarManager carManager = new CarManager(new EfCarDal());
 
             //carManager.Add(new Car { BrandId = 1, ColorId = 2, DailyPrice = 0, ModelYear = 2020, Description = "TOGG " });
-
-            //carManager.Update(new Car { Id = 3, BrandId = 1, ColorId = 2, DailyPrice = 22000, ModelYear = 2020, Description = "sıfır araç" });
+            //carManager.Add(new Car { BrandId = 2, ColorId = 1, DailyPrice = 850000, ModelYear = 2022, Description = "Mercedes CL-180" });
+            carManager.Update(new Car { Id = 1, BrandId = 1, ColorId = 2, DailyPrice = 220000, ModelYear = 2020, Description = "TOGG" });
 
             var result = carManager.GetAll();
             if (result.Success)
             {
                 foreach (var car in result.Data)
                 {
-                    Console.WriteLine(car.Description + "--" + car.ModelYear);
-                    
+                    Console.WriteLine(car.Description + " / " + car.ModelYear + " -- " + car.DailyPrice + " TL");
+
                 }
             }
             else
