@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
@@ -34,6 +35,10 @@ namespace Business.Concrete
 
         public IDataResult<List<User>> GetAll()
         {
+            if (DateTime.Now.Hour == 21)
+            {
+                return new ErrorDataResult<List<User>>(Messages.MaintenanceTime);
+            }
             return new SuccessDataResult<List<User>>(_userDal.GetAll());
         }
 

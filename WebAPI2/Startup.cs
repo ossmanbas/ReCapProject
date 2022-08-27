@@ -1,3 +1,7 @@
+using Business.Abstract;
+using Business.Concrete;
+using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,6 +32,8 @@ namespace WebAPI2
         {
 
             services.AddControllers();
+            services.AddSingleton<IUserService, UserManager>(); //IoC Container , Birisi Constructorda IUserService çaðýrýrsa , arka planda usermanager ý new leyip döndürüyor.
+            services.AddSingleton<IUserDal, EfUserDal>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPI2", Version = "v1" });
