@@ -32,8 +32,26 @@ namespace WebAPI2
         {
 
             services.AddControllers();
+
             services.AddSingleton<IUserService, UserManager>(); //IoC Container , Birisi Constructorda IUserService çaðýrýrsa , arka planda usermanager ý new leyip döndürüyor.
             services.AddSingleton<IUserDal, EfUserDal>();
+
+            services.AddSingleton<IBrandService, BrandManager>(); 
+            services.AddSingleton<IBrandDal, EfBrandDal>();
+
+            services.AddSingleton<ICarService, CarManager>();
+            services.AddSingleton<ICarDal, EfCarDal>();
+
+            services.AddSingleton<IColorService, ColorManager>();
+            services.AddSingleton<IColorDal, EfColorDal>();
+
+            services.AddSingleton<ICustomerService, CustomerManager>();
+            services.AddSingleton<ICustomerDal, EfCustomerDal>();
+
+            services.AddSingleton<IRentalService, RentalManager>();
+            services.AddSingleton<IRentalDal, EfRentalDal>();
+
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPI2", Version = "v1" });
