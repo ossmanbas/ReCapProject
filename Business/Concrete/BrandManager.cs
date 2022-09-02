@@ -1,10 +1,15 @@
 ﻿using Business.Abstract;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
+using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,8 +25,17 @@ namespace Business.Concrete
             _brandDal = brandDal;
         }
 
+        //FluentValidation
+        [ValidationAspect(typeof(BrandValidator))]
         public IResult Add(Brand brand)
         {
+            
+            //ValidationTool.Validate(new BrandValidator(), brand); 4 satır yukarıdaki kodu yazarak bu satırdan kurtulduk . (Validation Aspect)
+
+            //Business codes
+
+
+
             _brandDal.Add(brand);
             return new SuccessResult(); 
         }
