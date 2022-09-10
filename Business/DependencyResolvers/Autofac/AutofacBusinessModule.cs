@@ -2,6 +2,7 @@
 using Autofac.Extras.DynamicProxy;
 using Business.Abstract;
 using Business.Concrete;
+using Business.CrossCuttingS;
 using Castle.DynamicProxy;
 using Core.Utilities.Interceptors;
 using DataAccess.Abstract;
@@ -20,6 +21,8 @@ namespace Business.DependencyResolvers.Autofac
         {
             builder.RegisterType<BrandManager>().As<IBrandService>().SingleInstance(); //Startupdaki Addsingleton ı buraya almış oluyoruz.
             builder.RegisterType<EfBrandDal>().As<IBrandDal>().SingleInstance();
+
+           
 
             builder.RegisterType<CarManager>().As<ICarService>().SingleInstance();
             builder.RegisterType<EfCarDal>().As<ICarDal>().SingleInstance();

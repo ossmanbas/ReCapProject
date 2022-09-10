@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.CrossCuttingS;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
@@ -19,25 +20,30 @@ namespace Business.Concrete
     public class BrandManager : IBrandService
     {
         IBrandDal _brandDal;
+       
 
         public BrandManager(IBrandDal brandDal)
         {
             _brandDal = brandDal;
+            
         }
 
         //FluentValidation
         [ValidationAspect(typeof(BrandValidator))]
         public IResult Add(Brand brand)
         {
-            
             //ValidationTool.Validate(new BrandValidator(), brand); 4 satır yukarıdaki kodu yazarak bu satırdan kurtulduk . (Validation Aspect)
+
+
+            //Bir kategoride en fazla 10 ürün olabilir.
+
 
             //Business codes
 
-
-
             _brandDal.Add(brand);
-            return new SuccessResult(); 
+            return new SuccessResult();
+
+
         }
 
         public IResult Delete(Brand brand)
@@ -48,7 +54,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Brand>> GetAll()
         {
-            return new SuccessDataResult<List<Brand>>( _brandDal.GetAll());
+            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll());
         }
 
         public IDataResult<Brand> GetById(int id)
@@ -61,5 +67,11 @@ namespace Business.Concrete
             _brandDal.Update(brand);
             return new SuccessResult();
         }
+
+        //private IResult CheckIfBrandCountOfCategoryCorrect(int categoryId)
+        //{
+        //    var result = _brandDal.GetAll(b => b.)
+        //}
     }
+
 }
