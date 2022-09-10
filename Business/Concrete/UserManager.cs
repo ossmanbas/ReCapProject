@@ -2,9 +2,11 @@
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
+using Core.Utilities.Business;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -27,8 +29,15 @@ namespace Business.Concrete
 
         public IResult Add(User user)
         {
+            IResult result = BusinessRules.Run(CheckUserMailExists(user.Email));
+            if (result != null)
+            {
+                return result;
+            }
+
             _userDal.Add(user);
             return new SuccessResult();
+
         }
 
         public IResult Delete(User user)
@@ -55,6 +64,17 @@ namespace Business.Concrete
         {
             _userDal.Update(user);
             return new SuccessResult();
+        }
+
+        private IResult CheckUserMailExists(string userMail)
+        {
+            var result = _userDal.GetAll(u => u.Email == userMail).Any(); // Any bize bool döner.
+            if (result)
+            {
+                return new ErrorResult(Messages.MailNameAlreadyExists);
+            }
+            return new SuccessResult();
+
         }
     }
 }

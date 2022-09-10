@@ -16,5 +16,6 @@ namespace Business.Constants
         public static string CarsImagesListed = "Araç Resimleri Listelendi";
         public static string CarImagesUpdated = "Araç Resmi Güncellendi";
         public static string CarImagesDeleted = "Araç Resmi Silindi";
+        internal static string MailNameAlreadyExists = "Bu mail adresine kayıtlı hesap var !";
     }
 }
