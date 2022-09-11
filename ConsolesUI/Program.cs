@@ -1,4 +1,5 @@
-﻿using Business.Concrete;
+﻿using Business.Abstract;
+using Business.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
@@ -51,29 +52,29 @@ namespace ConsolesUI
             }
         }
 
-        private static void CarTest()
-        {
-            CarManager carManager = new CarManager(new EfCarDal());
+        //private static void CarTest()
+        //{
+        //    CarManager carManager = new CarManager(new EfCarDal());
 
-            //carManager.Add(new Car { BrandId = 1, ColorId = 2, DailyPrice = 0, ModelYear = 2020, Description = "TOGG " });
-            //carManager.Add(new Car { BrandId = 2, ColorId = 1, DailyPrice = 850000, ModelYear = 2022, Description = "Mercedes CL-180" });
-            carManager.Update(new Car { Id = 1, BrandId = 1, ColorId = 2, DailyPrice = 220000, ModelYear = 2020, Description = "TOGG" });
+        //    //carManager.Add(new Car { BrandId = 1, ColorId = 2, DailyPrice = 0, ModelYear = 2020, Description = "TOGG " });
+        //    //carManager.Add(new Car { BrandId = 2, ColorId = 1, DailyPrice = 850000, ModelYear = 2022, Description = "Mercedes CL-180" });
+        //    carManager.Update(new Car { Id = 1, BrandId = 1, ColorId = 2, DailyPrice = 220000, ModelYear = 2020, Description = "TOGG" });
 
-            var result = carManager.GetAll();
-            if (result.Success)
-            {
-                foreach (var car in result.Data)
-                {
-                    Console.WriteLine(car.Description + " / " + car.ModelYear + " -- " + car.DailyPrice + " TL");
+        //    var result = carManager.GetAll();
+        //    if (result.Success)
+        //    {
+        //        foreach (var car in result.Data)
+        //        {
+        //            Console.WriteLine(car.Description + " / " + car.ModelYear + " -- " + car.DailyPrice + " TL");
 
-                }
-            }
-            else
-            {
-                Console.WriteLine(result.Message);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine(result.Message);
 
-            }
+        //    }
 
-        }
+        //}
     }
 }

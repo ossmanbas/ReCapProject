@@ -17,5 +17,9 @@ namespace Business.Constants
         public static string CarImagesUpdated = "Araç Resmi Güncellendi";
         public static string CarImagesDeleted = "Araç Resmi Silindi";
         internal static string MailNameAlreadyExists = "Bu mail adresine kayıtlı hesap var !";
+        internal static string BrandCountExceded = "Marka sayısı aşıldığı için yeni araba eklenemiyor !";
+        internal static string ImageNotFound="Resim bulunamadı";
+        internal static string ImageDeleted="Resim Silindi";
+        internal static string ImageUpdated="Resim Güncellendi";
     }
 }

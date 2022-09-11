@@ -67,11 +67,6 @@ namespace Business.Concrete
             _brandDal.Update(brand);
             return new SuccessResult();
         }
-
-        //private IResult CheckIfBrandCountOfCategoryCorrect(int categoryId)
-        //{
-        //    var result = _brandDal.GetAll(b => b.)
-        //}
     }
 
 }

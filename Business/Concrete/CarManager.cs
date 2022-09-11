@@ -2,9 +2,11 @@
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
+using Core.Utilities.Business;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using Entities.DTOs;
 using System;
@@ -18,15 +20,22 @@ namespace Business.Concrete
     public class CarManager : ICarService
     {
         ICarDal _carDal;
+        IBrandService _brandService;
 
-        public CarManager(ICarDal carDal)
+        public CarManager(ICarDal carDal,IBrandService brandService) //Bir managerın içine kendisi hariç bir Dal injekte edilemez , bunun yerine diğer objenin service i edilir.
         {
             _carDal = carDal;
+            _brandService = brandService;
         }
 
         [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
+            IResult result = BusinessRules.Run(CheckIfBrandLimitExceded());
+            if (result!=null)
+            {
+                return result;
+            }
             _carDal.Add(car);
             return new SuccessResult(Messages.CarAdded);
 
@@ -87,7 +96,15 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
+        private IResult CheckIfBrandLimitExceded()
+        {
+            var result = _brandService.GetAll();
+            if (result.Data.Count >15)
+            {
+                return new ErrorResult(Messages.BrandCountExceded);
+            }
+            return new SuccessResult();
+        }
 
-       
     }
 }
