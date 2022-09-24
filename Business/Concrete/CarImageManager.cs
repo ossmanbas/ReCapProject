@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Business.Concrete
 {
@@ -63,7 +64,20 @@ namespace Business.Concrete
             return new SuccessDataResult<List<CarImages>>(_imagesDal.GetAll(), Messages.CarsImagesListed);
         }
 
-        public IDataResult<CarImages> GetById(int id)
+        public IDataResult<List<CarImages>> GetByCarId(int id)
+        {
+                var imageResult = _imagesDal.GetAll(c => c.CarId == id);
+                if (imageResult.Count >0)
+                {
+                    return new SuccessDataResult<List<CarImages>>(imageResult);
+                }
+                List<CarImages> carImages = new List<CarImages>();
+                carImages.Add(new CarImages() { Id = 0, CarId = 0, ImagePath = "/images/default.jpg" });
+                return new SuccessDataResult<List<CarImages>>(carImages);
+            }
+          
+
+            public IDataResult<CarImages> GetById(int id)
         {
             return new SuccessDataResult<CarImages>(_imagesDal.Get(x => x.Id == id));
         }

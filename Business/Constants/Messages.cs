@@ -16,10 +16,11 @@ namespace Business.Constants
         public static string CarsImagesListed = "Araç Resimleri Listelendi";
         public static string CarImagesUpdated = "Araç Resmi Güncellendi";
         public static string CarImagesDeleted = "Araç Resmi Silindi";
-        internal static string MailNameAlreadyExists = "Bu mail adresine kayıtlı hesap var !";
-        internal static string BrandCountExceded = "Marka sayısı aşıldığı için yeni araba eklenemiyor !";
-        internal static string ImageNotFound="Resim bulunamadı";
-        internal static string ImageDeleted="Resim Silindi";
-        internal static string ImageUpdated="Resim Güncellendi";
+        public static string MailNameAlreadyExists = "Bu mail adresine kayıtlı hesap var !";
+        public static string BrandCountExceded = "Marka sayısı aşıldığı için yeni araba eklenemiyor !";
+        public static string ImageNotFound="Resim bulunamadı";
+        public static string ImageDeleted="Resim Silindi";
+        public static string ImageUpdated="Resim Güncellendi";
+        public static string CarNotFound="Araç Bulunamadı";
     }
 }

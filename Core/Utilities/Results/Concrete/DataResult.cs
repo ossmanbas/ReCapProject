@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Core.Utilities.Results.Concrete
 {
-    public class DataResult<T> : Result, IDataResult<T>
+    public class DataResult<T> : Result, IDataResult<T> 
     {
         public DataResult(T data, bool success, string message) : base(success, message)
         {
