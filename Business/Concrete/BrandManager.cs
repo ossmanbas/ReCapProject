@@ -28,6 +28,9 @@ namespace Business.Concrete
             
         }
 
+
+        //Claim (iddaa etmek, yetki vermek)
+        //[SecuredOperation("admin,brand.add")]
         //FluentValidation
         [ValidationAspect(typeof(BrandValidator))]
         public IResult Add(Brand brand)
@@ -36,8 +39,6 @@ namespace Business.Concrete
 
 
             //Bir kategoride en fazla 10 ürün olabilir.
-
-
             //Business codes
 
             _brandDal.Add(brand);

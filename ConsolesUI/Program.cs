@@ -37,10 +37,11 @@ namespace ConsolesUI
         private static void UserTest()
         {
             UserManager userManager = new UserManager(new EfUserDal());
-            userManager.Add(new User { FirstName = "Osman", LastName = "Baş", Email = "osmanbastr12@gmail.com", Password = "123" });
-            userManager.Add(new User { FirstName = "Furkan", LastName = "Taşçı", Email = "esquetta@gmail.com", Password = "345" });
-            userManager.Add(new User { FirstName = "Mehmet Ali", LastName = "Okudan", Email = "okudanmaois@gmail.com", Password = "567" });
-            userManager.Add(new User { FirstName = "Berkay", LastName = "TÜRK", Email = "tavuklupilav@gmail.com", Password = "789" });
+        //    userManager.Add(new User { FirstName = "Osman", LastName = "Baş", Email = "osmanbastr12@gmail.com", Password = "123" });
+        //    userManager.Add(new User { FirstName = "Furkan", LastName = "Taşçı", Email = "esquetta@gmail.com", Password = "345" });
+        //    userManager.Add(new User { FirstName = "Mehmet Ali", LastName = "Okudan", Email = "okudanmaois@gmail.com", Password = "567" });
+        //    userManager.Add(new User { FirstName = "Berkay", LastName = "TÜRK", Email = "tavuklupilav@gmail.com", Password = "789" });
+        
         }
 
         private static void BrandTest()
