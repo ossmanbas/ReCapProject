@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.CrossCuttingS;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
@@ -30,7 +31,8 @@ namespace Business.Concrete
 
 
         //Claim (iddaa etmek, yetki vermek)
-        //[SecuredOperation("admin,brand.add")]
+        [SecuredOperation("admin,brand.add")]
+
         //FluentValidation
         [ValidationAspect(typeof(BrandValidator))]
         public IResult Add(Brand brand)
