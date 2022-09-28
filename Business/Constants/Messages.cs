@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Core.Entities.Concreate;
+using Entities.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -24,5 +26,11 @@ namespace Business.Constants
         public static string ImageUpdated="Resim Güncellendi ";
         public static string CarNotFound="Araç Bulunamadı ";
         public  static string AuthorizationDenied="Yetkiniz yok !";
+        public static string UserRegistered="Kayıt Başarılı !";
+        public static string UserNotFound="Kullanıcı Bulunamadı !";
+        public static string PasswordError="Hatalı Parola !";
+        public static string SuccessfulLogin="Giriş Başarılı !";
+        public static string UserAlreadyExists="Kullanıcı Mevcut !";
+        public static string AccessTokenCreated="Access Token oluşturuldu !";
     }
 }

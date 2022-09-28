@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Core.Utilities.Security.Hashing
 {
-    public class HashinHelper
+    public class HashingHelper
     {
         //Verdiğimiz passwordün hash ini oluşturuyo.
         public static void CreatePasswordHash
