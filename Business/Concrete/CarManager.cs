@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Business;
 using Core.Utilities.Results.Abstract;
@@ -48,6 +49,9 @@ namespace Business.Concrete
             //    Console.WriteLine("Ürün açıklaması 2'den büyük olmalı ve günlük fiyat 0'dan fazla olmalı.");
             //}
         }
+
+        [ValidationAspect(typeof(CarValidator))]
+        [CacheRemoveAspect("ICarService.Get")]
         public IResult Update(Car car)
         {
             _carDal.Update(car);
@@ -61,6 +65,7 @@ namespace Business.Concrete
             //    Console.WriteLine("Ürün açıklaması 2'den büyük olmalı ve günlük fiyat 0'dan fazla olmalı.");
             //}
         }
+        [CacheAspect]
         public IDataResult<List<Car>> GetAll()
         {
             if (DateTime.Now.Hour==01)
@@ -80,11 +85,13 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(x => x.ColorId == id));
         }
 
+        [CacheAspect]
         public IDataResult<List<CarDetailDto>> GetCarDetails()
         {
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails());
         }
 
+        [CacheAspect]
         public IDataResult<Car> GetById(int id)
         {
             return new SuccessDataResult<Car>(_carDal.Get(x => x.Id == id));
@@ -106,5 +113,9 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
+        public IResult AddTransactionalTest(Car car)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
