@@ -23,7 +23,7 @@ namespace WebAPI.Controllers
             var result = _rentalManager.GetAll();
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
             return BadRequest(result.Message);
         }
